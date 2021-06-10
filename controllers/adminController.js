@@ -28,6 +28,7 @@ module.exports = {
         email,
         password
       });
+      
       const salt = await bcrypt.genSalt(10);
 
       admin.password = await bcrypt.hash(password, salt);
