@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 
 module.exports = {
-
   register: async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -28,7 +27,7 @@ module.exports = {
         email,
         password
       });
-      
+
       const salt = await bcrypt.genSalt(10);
 
       admin.password = await bcrypt.hash(password, salt);
@@ -36,27 +35,25 @@ module.exports = {
       await admin.save();
 
       const payload = {
-          admin: {
-            id: admin.id
-          }
-        };
+        admin: {
+          id: admin.id
+        }
+      };
 
-        jwt.sign(
-          payload,
-          config.get('jwtSecret'),
-          { expiresIn: '14 days' },
-          (err, token) => {
-            if (err) throw err;
-            res.json({ token });
-          }
-        );
-
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        { expiresIn: '14 days' },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
     }
   },
-
 
   login: async (req, res) => {
     const { email, password } = req.body;
@@ -67,8 +64,7 @@ module.exports = {
       if (!admin) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }]
-        });
+          .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
 
       const isMatch = await bcrypt.compare(password, admin.password);
@@ -76,8 +72,7 @@ module.exports = {
       if (!isMatch) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Invalid Credentials' }]
-        });
+          .json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
 
       const payload = {
@@ -93,13 +88,11 @@ module.exports = {
         (err, token) => {
           if (err) throw err;
           res.json({ token });
-        });
-
-    }
-    catch (err) {
+        }
+      );
+    } catch (err) {
       console.error(err.msg);
       res.status(500).send('Server Error');
     }
-  },
-
+  }
 };

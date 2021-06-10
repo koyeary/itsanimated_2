@@ -5,5 +5,7 @@ const storefrontController = require('../../controllers/storefrontController');
 router
     .route('/')
     .get(storefrontController.findAll)
+    .post(storefrontController.create)
+
 
 module.exports = router;
