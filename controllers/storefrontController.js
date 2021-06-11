@@ -14,6 +14,22 @@ module.exports = {
     }
   },
 
+  // @route    GET api/storefront/search
+  // @desc     Get product by name
+  // @access   Public
+/*   find: async (req, res) => {
+    const { name } = req.body;
+
+    try {
+      const product = await Product.findOne({ name });
+      return res.json(product);
+
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
+  }, */
+
   // @route    POST api/storefront/
   // @desc     Save new product
   // @access   Private
@@ -36,18 +52,42 @@ module.exports = {
 
       await product.save();
 
-      return res.status(200).json({ msg: 'Product creation successful' });
+      return res.status(200).json({ msg: 'Product successfully created' });
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
     }
   },
 
-  // @route    UPDATE api/storefront/
+  // @route    PUT api/storefront/
   // @desc     Save new product
   // @access   Private
   update: async (req, res) => {
     const { name, price, _id } = req.body;
+
+    try {
+      let product = await Product.findOne({ _id });
+
+      if (!product) {
+        return res.status(400).json({
+          errors: [{ msg: `Could not find product id ${_id}` }]
+        });
+      }
+
+      await Product.updateOne({ _id }, { $set: { name, price } });
+
+      return res.status(200).json({ msg: `Product ${_id} updated` });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
+  },
+
+  // @route    DELETE api/storefront/
+  // @desc     Save new product
+  // @access   Private
+  remove: async (req, res) => {
+    const { _id } = req.body;
 
     try {
       let product = await Product.find({ _id });
@@ -58,9 +98,8 @@ module.exports = {
         });
       }
 
-      await Product.updateOne({ _id }, { $set: { name, price } });
-
-      return res.status(200).json({ msg: `Product ${_id} updated` });
+      await Product.deleteOne({ _id });
+      return res.status(200).json({ msg: `Product ${_id} deleted` });
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');

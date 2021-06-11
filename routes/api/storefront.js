@@ -8,6 +8,10 @@ router
     .get(storefrontController.findAll)
     .post(auth, storefrontController.create)
     .put(auth, storefrontController.update)
+    .delete(auth, storefrontController.remove);
 
-
+// Matches with '/api/storefront/:id
+/* router
+    .route('/:id')
+    .get(storefrontController.find) */
 module.exports = router;
