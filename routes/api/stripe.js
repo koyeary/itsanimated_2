@@ -2,8 +2,9 @@ const router = require('express').Router();
 const stripeController = require('../../controllers/stripeController');
 
 // Matches with '/api/stripe'
-router.route('/')
-      .post(stripeController.createCustomer);  
-
+router
+  .route('/')
+  .get(stripeController.createCheckoutSession)
+  .post(stripeController.createCustomer);
 
 module.exports = router;
