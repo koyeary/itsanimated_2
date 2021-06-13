@@ -18,7 +18,7 @@ module.exports = {
 
       if (!posts) {
         return res.status(400).json({
-          errors: [{ msg: `Could not find posts for animatedtext.tumblr` }]
+          errors: [{ msg: `Invalid credentials` }]
         });
       }
 
