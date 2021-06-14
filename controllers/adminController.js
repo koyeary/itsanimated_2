@@ -5,6 +5,16 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 
 module.exports = {
+  loadUser: async (req, res) => {
+    try {
+      const admin = await Admin.findById(req.admin.id).select('-password');
+      res.json(admin);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  },
+
   register: async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -94,5 +104,6 @@ module.exports = {
       console.error(err.msg);
       res.status(500).send('Server Error');
     }
-  }
+  },
+
 };

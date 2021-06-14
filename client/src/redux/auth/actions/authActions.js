@@ -13,7 +13,7 @@ import {
 // Load User
 export const loadUser = () => async dispatch => {
   try {
-    const res = await api.get('/auth');
+    const res = await api.get('/admin');
 
     dispatch({
       type: USER_LOADED,

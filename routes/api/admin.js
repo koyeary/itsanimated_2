@@ -3,8 +3,9 @@ const adminController = require('../../controllers/adminController');
 const auth = require('../../middleware/auth');
 
 // Matches with '/api/admin'
-router.route('/')
-
+router
+    .route('/')
+    .get(auth, adminController.loadUser);
 // Matches with '/api/admin/register'
 router
     .route('/register')
