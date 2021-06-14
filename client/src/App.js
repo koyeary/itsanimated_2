@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from './components/navs/Header';
 import Home from './components/pages/Home';
 
 // Redux
@@ -28,8 +27,9 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Header />
-        <Home />
+          <Switch>
+            <Route exact path='/' component={Home} />
+          </Switch>
       </Router>
     </Provider>
   );

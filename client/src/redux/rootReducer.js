@@ -10,7 +10,7 @@ import contact from './contact'; */
 
 export default combineReducers({
     // alert
-      auth,
+      auth
      /*shop,
      images,
      stripe,

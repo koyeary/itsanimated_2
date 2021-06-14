@@ -13,6 +13,6 @@ router
 // Matches with '/api/admin/login'
  router
   .route('/login')
-  .post(auth, adminController.login);
+  .post(adminController.login);
 
 module.exports = router;

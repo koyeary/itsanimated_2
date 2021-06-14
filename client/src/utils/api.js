@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import store from '../store';
-//import { LOGOUT } from '../actions/types';
+import { LOGOUT } from '../redux/auth/actions/types';
 
 const api = axios.create({
   baseURL: '/api',
@@ -21,7 +21,7 @@ api.interceptors.response.use(
   res => res,
   err => {
     if (err.response.status === 401) {
-      //store.dispatch({ type: LOGOUT });
+      store.dispatch({ type: LOGOUT });
     }
     return Promise.reject(err);
   }
