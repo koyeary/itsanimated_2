@@ -1,6 +1,4 @@
 import React, { Fragment } from 'react';
-import Login from '../auth/Login';
-import Header from '../navs/Header';
 
 const Home = () => {
   return (
@@ -8,7 +6,6 @@ const Home = () => {
       <div>
         <h1>Home</h1>
       </div>
-      <Login />
     </Fragment>
   );
 };

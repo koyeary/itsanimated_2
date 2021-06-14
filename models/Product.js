@@ -6,9 +6,16 @@ const ProductSchema = new Schema({
     required: true,
     type: String
   },
+  category: {
+    required: true,
+    type: String
+  },
   price: {
     required: true,
     type: Number
+  },
+  image_src: {
+    type: String
   },
   created_at: Date,
   updated_at: Date

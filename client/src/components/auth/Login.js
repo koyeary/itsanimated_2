@@ -26,15 +26,6 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <Container className="my-5">
-      <Col/>
-      <Col>
-      <Modal.Dialog className="login">
-        <Modal.Header>
-          <h3 className="large text-primary">
-            <i className="fas fa-user" /> Sign In
-          </h3>
-        </Modal.Header>
         <Modal.Body>
           <Form onSubmit={onSubmit}>
             <Form.Group>
@@ -59,9 +50,6 @@ const Login = ({ login, isAuthenticated }) => {
             <input type="submit" className="btn btn-primary" value="Login" />
           </Form>
         </Modal.Body>
-      </Modal.Dialog>
-      </Col>
-    </Container>
   );
 };
 

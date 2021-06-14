@@ -25,9 +25,13 @@ const MainNav = ({ auth: { isAuthenticated }, logout }) => {
         </Navbar.Collapse>
         <Nav>
           <Nav.Link>
-            <a onClick={logout} href='#!'>
-              Logout Admin {logOut}
-            </a>
+            {isAuthenticated ? (
+              <a onClick={logout} href='#!'>
+                Logout Admin {logOut}
+              </a>
+            ) : (
+              <a href='cart'>Cart</a>
+            )}
           </Nav.Link>
         </Nav>
       </Container>

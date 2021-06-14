@@ -28,12 +28,12 @@ const App = () => {
 
   return (
     <Provider store={store}>
-        <MainNav/>
+      <MainNav />
       <Router>
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route component={Routes} />
-          </Switch>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route component={Routes} />
+        </Switch>
       </Router>
     </Provider>
   );
