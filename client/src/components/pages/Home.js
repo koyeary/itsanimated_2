@@ -6,7 +6,6 @@ const Home = () => {
   return (
     <Fragment>
       <div>
-        <Header/>
         <h1>Home</h1>
       </div>
       <Login />
