@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateProduct } from '../../redux/shop/actions/shopActions';
@@ -24,6 +24,12 @@ const Update = ({ updateProduct, product }) => {
     setEditMode(false);
   };
 
+  const handleCancel = (e) => {
+    e.preventDefault();
+
+    setEditMode(false);
+  };
+
   const handleEdit = (e) => {
     e.preventDefault();
     setEditMode(true);
@@ -37,13 +43,22 @@ const Update = ({ updateProduct, product }) => {
     <tr>
       <th scope='row'>
         {editMode ? (
-          <Button
-            data-toggle='button'
-            onClick={(e) => handleSave(e)}
-            type='submit'
-          >
-            <i class='far fa-save' />
-          </Button>
+          <Fragment>
+            <Button
+              data-toggle='button'
+              onClick={(e) => handleSave(e)}
+              type='submit'
+            >
+              <i class='far fa-save' />
+            </Button>
+            <Button
+              data-toggle='button'
+              onClick={(e) => handleCancel(e)}
+              type='submit'
+            >
+              <i class='far fa-save' />
+            </Button>
+          </Fragment>
         ) : (
           <Button>
             <i class='far fa-edit' onClick={(e) => handleEdit(e)} />

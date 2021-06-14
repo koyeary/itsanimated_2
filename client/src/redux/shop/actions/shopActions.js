@@ -35,7 +35,7 @@ export const updateProduct = (id, formData) => async (dispatch) => {
   };
 
   try {
-    const res = await api.put(`/storefront/admin/${id}`, formData, config);
+    const res = await api.put(`/storefront/${id}`, formData, config);
 
     dispatch({
       type: UPDATE_PRODUCT,
@@ -50,9 +50,9 @@ export const updateProduct = (id, formData) => async (dispatch) => {
 };
 
 // Delete
-export const deleteProduct = (id) => async (dispatch) => {
+export const deleteProduct = ({ id }) => async (dispatch) => {
   try {
-    await api.delete(`/storefront/admin/${id}`);
+    await api.delete(`/storefront/${id}`);
 
     dispatch({
       type: DELETE_PRODUCT,
@@ -77,7 +77,7 @@ export const addProduct = (formData) => async (dispatch) => {
   };
 
   try {
-    const res = await api.post('/storefront/admin', formData, config);
+    const res = await api.post('/storefront', formData, config);
 
     dispatch({
       type: ADD_PRODUCT,
