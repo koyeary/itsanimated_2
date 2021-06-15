@@ -1,10 +1,9 @@
-import React, { Fragment, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Button from './components/Button';
+import React, { Fragment}  from 'react';
+import ProductForm from './components/ProductForm';
+import TableBody from './components/Table/TableBody';
+
 import { Row, Col, Container } from 'react-bootstrap';
 
-import { connect } from 'react-redux';
-import TableBody from './components/Table/TableBody';
 
 const Dashboard = () => {
 
@@ -15,10 +14,10 @@ const Dashboard = () => {
       </Row>
       <Container className='my-4'>
         <Row>
-          <Col className='text-center' md={3}></Col>
-          <Col md={9}>
-            <TableBody/>
+          <Col className='text-center' md={3}>
+            <ProductForm />
           </Col>
+          <TableBody/>
         </Row>
       </Container>
     </Fragment>
