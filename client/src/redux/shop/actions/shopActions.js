@@ -9,6 +9,23 @@ import {
   GET_PRODUCT
 } from './types';
 
+// Get one product
+export const getProduct = (id) => async (dispatch) => {
+  try {
+    const res = await api.get(`/storefront/${id}`);
+
+    dispatch({
+      type: GET_PRODUCT,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
 // Get products
 export const getProducts = () => async (dispatch) => {
   try {
@@ -18,6 +35,32 @@ export const getProducts = () => async (dispatch) => {
       type: GET_PRODUCTS,
       payload: res.data
     });
+  } catch (err) {
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+
+// Add product
+export const addProduct = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await api.post('/storefront', formData, config);
+
+    dispatch({
+      type: ADD_PRODUCT,
+      payload: res.data
+    });
+
+    //dispatch(setAlert('Product Created', 'success'));
   } catch (err) {
     dispatch({
       type: PRODUCT_ERROR,
@@ -49,7 +92,7 @@ export const updateProduct = (formData) => async (dispatch) => {
   }
 };
 
-// Delete]
+// Delete product
 export const deleteProduct = (id) => async (dispatch) => {
   const config = {
     headers: {
@@ -58,14 +101,14 @@ export const deleteProduct = (id) => async (dispatch) => {
   };
 
   try {
-    const res = await api.delete(`/storefront`, id, config);
+    await api.delete(`/storefront/${id}`, config);
 
     dispatch({
       type: DELETE_PRODUCT,
-      payload: res.data
+      payload: id
     });
 
-    dispatch(console.log('Product Removed', 'success'));
+    dispatch(`${id} removed`);
   } catch (err) {
     dispatch({
       type: PRODUCT_ERROR,
@@ -74,44 +117,5 @@ export const deleteProduct = (id) => async (dispatch) => {
   }
 };
 
-// Add
-export const addProduct = (formData) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
 
-  try {
-    const res = await api.post('/storefront', formData, config);
 
-    dispatch({
-      type: ADD_PRODUCT,
-      payload: res.data
-    });
-
-    //dispatch(setAlert('Product Created', 'success'));
-  } catch (err) {
-    dispatch({
-      type: PRODUCT_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
-  }
-};
-
-// Get
-export const getProduct = (id) => async (dispatch) => {
-  try {
-    const res = await api.get(`/storefront/${id}`);
-
-    dispatch({
-      type: GET_PRODUCT,
-      payload: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: PRODUCT_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
-  }
-};

@@ -7,13 +7,12 @@ router
     .route('/')
     .get(storefrontController.findAll)
     .post(auth, storefrontController.create)
-    .put(auth, storefrontController.update)
-    .delete(auth, storefrontController.remove);
+    .put(auth, storefrontController.update);
 
 // Matches with '/api/storefront/:id
  router
     .route('/:id')
-    .get(storefrontController.getItem) 
-    //.delete(auth, storefrontController.remove);
+    .delete(auth, storefrontController.erase)
+    .get(storefrontController.getItem);
 
 module.exports = router;

@@ -14,7 +14,6 @@ module.exports = {
     }
   },
 
-  //MUST ADD CLIENT SIDE ACTION THAT CALLS GET ITEM 
   // @route    GET api/storefront/search
   // @desc     Get product by name
   // @access   Public
@@ -35,7 +34,7 @@ module.exports = {
   // @desc     Save new product
   // @access   Private
   create: async (req, res) => {
-    const { name, price } = req.body;
+    const { name, price, category, image_src } = req.body;
 
     try {
       let product = await Product.findOne({ name });
@@ -48,7 +47,9 @@ module.exports = {
 
       product = new Product({
         name,
-        price
+        price,
+        category,
+        image_src
       });
 
       await product.save();
@@ -64,8 +65,7 @@ module.exports = {
   // @desc     Save new product
   // @access   Private
   update: async (req, res) => {
-    const { name, price, _id } = req.body;
-    console.log(req.body);
+    const { name, price, category, image_src, _id } = req.body;
 
     try {
       let product = await Product.findOne({ _id });
@@ -76,7 +76,7 @@ module.exports = {
         });
       }
 
-      await Product.updateOne({ _id }, { $set: { name, price } });
+      await Product.updateOne({ _id }, { $set: { name, price, category, image_src } });
 
       return res.status(200).json({ msg: `Product ${_id} updated` });
     } catch (err) {
@@ -85,26 +85,26 @@ module.exports = {
     }
   },
 
-  // @route    DELETE api/storefront/:id
+  // @route    DELETE api/storefront
   // @desc     Save new product
   // @access   Private
-  remove: async (req, res) => {
-    //const { _id } = req.body;
-    console.log(`delete ${req.body}`);
-    /* try {
-      let product = await Product.find({ _id });
+  erase: async (req, res) => {
+
+     try {
+      const product = await Product.findById(req.params.id);
 
       if (!product) {
         return res.status(400).json({
-          errors: [{ msg: `Product ${_id} does not exist` }]
+          errors: [{ msg: `Could not find product id ${id}` }]
         });
       }
 
-      await Product.deleteOne({ _id });
+      await product.remove();
+
       return res.status(200).json({ msg: `Product ${_id} deleted` });
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
-    } */
+    } 
   }
 };

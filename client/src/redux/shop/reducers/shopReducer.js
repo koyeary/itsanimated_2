@@ -39,7 +39,7 @@ import {
       case DELETE_PRODUCT:
         return {
           ...state,
-          product: null,
+          products: state.posts.filter((product) => product._id !== payload),
           loading: false
         };
       case PRODUCT_ERROR:
