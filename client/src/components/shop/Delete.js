@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteProduct } from '../../redux/shop/actions/shopActions';
@@ -28,4 +28,4 @@ Delete.propTypes = {
   shop: PropTypes.object.isRequired
 };
 
-export default connect(null, { deleteProduct })(Delete);
+export default connect(null, { deleteProduct })(Delete); */

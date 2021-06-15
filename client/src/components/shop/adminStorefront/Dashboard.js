@@ -1,8 +1,7 @@
 import React, { Fragment}  from 'react';
-import ProductForm from './components/Table/buttons/Add';
-import TableBody from './components/Table/TableBody';
+import { Link } from 'react-router-dom';
 
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Container } from 'react-bootstrap';
 
 
 const Dashboard = () => {
@@ -14,7 +13,7 @@ const Dashboard = () => {
       </Row>
       <Container className='my-4'>
         <Row>
-          <TableBody/>
+          <Link to='/inventory'>Inventory</Link>
         </Row>
       </Container>
     </Fragment>

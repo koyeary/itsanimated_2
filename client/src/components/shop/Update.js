@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+/* import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateProduct } from '../../redux/shop/actions/shopActions';
@@ -101,4 +101,4 @@ Update.propTypes = {
   updateProduct: PropTypes.func.isRequired
 };
 
-export default connect(null, { updateProduct })(Update);
+export default connect(null, { updateProduct })(Update); */

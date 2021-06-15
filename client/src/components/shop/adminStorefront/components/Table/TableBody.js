@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import TableRow from './TableRow';
-import Add from './buttons/Add';
 import { getProducts } from '../../../../../redux/shop/actions/shopActions';
 import { Col } from 'react-bootstrap';
 
