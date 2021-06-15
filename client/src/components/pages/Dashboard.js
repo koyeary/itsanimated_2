@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+/* import React, { Fragment } from 'react';
 import ProductForm from '../shop/ProductForm';
 
 import TableBody from '../shop/adminStorefront/components/Table/TableBody';
@@ -24,4 +24,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Dashboard; */

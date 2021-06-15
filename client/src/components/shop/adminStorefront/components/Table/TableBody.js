@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import TableRow from './TableRow';
+import Add from './buttons/Add';
 import { getProducts } from '../../../../../redux/shop/actions/shopActions';
 import { Col } from 'react-bootstrap';
 
@@ -14,7 +15,7 @@ const TableBody = ({ getProducts, shop: { products } }) => {
         <table className='table table-hover table-wrapper table-scrollbar shadow'>
           <thead className='thead-light'>
             <tr>
-              <th scope='col'></th>
+              <th scope='col'><Add/></th>
               <th scope='col'>Name</th>
               <th scope='col'>Category</th>
               <th scope='col'>Price</th>

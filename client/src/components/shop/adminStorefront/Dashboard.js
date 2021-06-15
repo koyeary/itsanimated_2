@@ -1,5 +1,5 @@
 import React, { Fragment}  from 'react';
-import ProductForm from './components/ProductForm';
+import ProductForm from './components/Table/buttons/Add';
 import TableBody from './components/Table/TableBody';
 
 import { Row, Col, Container } from 'react-bootstrap';
@@ -14,9 +14,6 @@ const Dashboard = () => {
       </Row>
       <Container className='my-4'>
         <Row>
-          <Col className='text-center' md={3}>
-            <ProductForm />
-          </Col>
           <TableBody/>
         </Row>
       </Container>

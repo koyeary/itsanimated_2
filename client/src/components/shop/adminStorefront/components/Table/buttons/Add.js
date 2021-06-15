@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 //import { Spinner } from 'react-bootstrap';
 
 import { Form, Button, Modal } from 'react-bootstrap';
-import { addProduct } from '../../../../redux/shop/actions/shopActions';
+import { addProduct } from '../../../../../../redux/shop/actions/shopActions';
 
 const ProductForm = ({ addProduct }) => {
   const initialState = {
@@ -100,8 +100,7 @@ const ProductForm = ({ addProduct }) => {
         value="add"
         onClick={handleShow}
       >
-        <i className="fas fa-plus pr-3" />
-        add item
+        <i className="fas fa-plus" />
       </Button>
 
       <Modal show={show} onHide={handleClose}>
