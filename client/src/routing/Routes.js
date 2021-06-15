@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Admin from '../components/pages/Admin';
 import Home from '../components/pages/Home';
 import Dashboard from '../components/shop/adminStorefront/Dashboard';
+import Inventory from '../components/shop/adminStorefront/Inventory';
 import PrivateRoute from './PrivateRoutes';
 
 const Routes = (props) => {
@@ -12,6 +13,7 @@ const Routes = (props) => {
       <Switch>
         <Route path='/admin' component={Admin} /> 
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
+        <PrivateRoute exact path='/inventory' component={Inventory} />
       </Switch>
     </Fragment>
   );

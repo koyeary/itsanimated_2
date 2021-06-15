@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Form, Button, Modal } from 'react-bootstrap';
 import { addProduct } from '../../../../../../redux/shop/actions/shopActions';
 
-const ProductForm = ({ addProduct }) => {
+const Add = ({ addProduct }) => {
   const initialState = {
     name: '',
     price: '',
@@ -113,8 +113,8 @@ const ProductForm = ({ addProduct }) => {
   );
 };
 
-ProductForm.propTypes = {
+Add.propTypes = {
   addProduct: PropTypes.func.isRequired
 };
 
-export default connect(null, { addProduct })(ProductForm);
+export default connect(null, { addProduct })(Add);

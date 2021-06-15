@@ -65,6 +65,7 @@ module.exports = {
   // @access   Private
   update: async (req, res) => {
     const { name, price, _id } = req.body;
+    console.log(req.body);
 
     try {
       let product = await Product.findOne({ _id });
@@ -84,13 +85,13 @@ module.exports = {
     }
   },
 
-  // @route    DELETE api/storefront/
+  // @route    DELETE api/storefront/:id
   // @desc     Save new product
   // @access   Private
   remove: async (req, res) => {
-    const { _id } = req.body;
-
-    try {
+    //const { _id } = req.body;
+    console.log(`delete ${req.body}`);
+    /* try {
       let product = await Product.find({ _id });
 
       if (!product) {
@@ -104,6 +105,6 @@ module.exports = {
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
-    }
+    } */
   }
 };

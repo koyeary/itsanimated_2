@@ -27,7 +27,7 @@ export const getProducts = () => async (dispatch) => {
 };
 
 // Update product
-export const updateProduct = (id, formData) => async (dispatch) => {
+export const updateProduct = (formData) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ export const updateProduct = (id, formData) => async (dispatch) => {
   };
 
   try {
-    const res = await api.put(`/storefront/${id}`, formData, config);
+    const res = await api.put(`/storefront`, formData, config);
 
     dispatch({
       type: UPDATE_PRODUCT,
@@ -49,21 +49,27 @@ export const updateProduct = (id, formData) => async (dispatch) => {
   }
 };
 
-// Delete
-export const deleteProduct = ({ id }) => async (dispatch) => {
+// Delete]
+export const deleteProduct = (id) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
   try {
-    await api.delete(`/storefront/${id}`);
+    const res = await api.delete(`/storefront`, id, config);
 
     dispatch({
       type: DELETE_PRODUCT,
-      payload: id 
+      payload: res.data
     });
 
-    //dispatch(setAlert('Product Removed', 'success'));
+    dispatch(console.log('Product Removed', 'success'));
   } catch (err) {
     dispatch({
       type: PRODUCT_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
+      //payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
 };

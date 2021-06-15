@@ -1,25 +1,23 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
+import Delete from './buttons/Delete';
+import Update from './buttons/Update';
 
 const TableRow = ({ product }) => {
   //props: icon, handleClick, products
 
   return (
     <tr>
-      <th scope='row'>
-        <Button className='mr-2'>
-          <i class='far fa-trash-alt' />
-        </Button>
-        <Button>
-          <i class='far fa-edit' />
-        </Button>
-      </th>
       <td>{product.name}</td>
       <td>{product.category}</td>
       <td>${product.price}</td>
       <td>{product.img_src}</td>
+      <td>
+        <Update product={product}/>
+      </td>
+      <td>
+        <Delete product={product}/>
+      </td>
     </tr>
   );
 };
