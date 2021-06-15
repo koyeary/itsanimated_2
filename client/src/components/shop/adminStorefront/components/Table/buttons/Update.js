@@ -3,20 +3,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 //import { Spinner } from 'react-bootstrap';
 
-import { Form, Button, Modal } from 'react-bootstrap';
-import { addProduct } from '../../redux/shop/actions/shopActions';
+import { Button, Modal, Form } from 'react-bootstrap';
+import { updateProduct } from '../../../../../../redux/shop/actions/shopActions';
 
-const ProductForm = ({ addProduct }) => {
+const Update = ({ updateProduct, product }) => {
   const initialState = {
-    name: '',
-    price: '',
-    category: '',
-    main_image: ''
+    name: product.name,
+    price: product.price,
+    category: product.category,
+    image_src: product.image_src,
+    _id: product._id
   };
   const [formData, setFormData] = useState(initialState);
   const [show, setShow] = useState(false);
 
-  const { name, price, category, main_image } = formData;
+  const { name, price, category, image_src, _id } = formData;
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -26,11 +27,11 @@ const ProductForm = ({ addProduct }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addProduct(formData);
-    alert(`added ${name} to shop`);
+    updateProduct(formData);
+    alert(`product ${_id} updated`);
     handleClose();
-    setFormData(initialState);
   };
+
 
   const formBody = (
     <Form onSubmit={onSubmit}>
@@ -47,6 +48,17 @@ const ProductForm = ({ addProduct }) => {
       </Form.Group>
 
       <Form.Group>
+        <Form.Label>Product ID</Form.Label>
+        <Form.Control
+          className="form-control-lg"
+          name="name"
+          value={_id}
+          placeholder={_id}
+          required
+        />
+      </Form.Group>
+
+      <Form.Group>
         <Form.Label>category</Form.Label>
         <Form.Control
           className="form-control-lg"
@@ -54,6 +66,7 @@ const ProductForm = ({ addProduct }) => {
           value={category}
           onChange={onChange}
           placeholder="Ex: hat"
+          required
         />
       </Form.Group>
 
@@ -73,8 +86,8 @@ const ProductForm = ({ addProduct }) => {
         <Form.Label>Image</Form.Label>
         <Form.Control
           className="form-control-lg"
-          name="main_image"
-          value={main_image}
+          name="image_src"
+          value={image_src}
           onChange={onChange}
           placeholder="Image File"
           required
@@ -94,19 +107,17 @@ const ProductForm = ({ addProduct }) => {
 
   return (
     <Fragment>
-      <Button
-        data-toggle="button"
-        className="my-3"
-        value="add"
-        onClick={handleShow}
-      >
-        <i className="fas fa-plus pr-3" />
-        add item
-      </Button>
+    <Button
+      data-toggle="button"
+      value="update"
+      onClick={handleShow}
+    >
+      <i class='far fa-edit' />
+    </Button>
 
-      <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add shop item</Modal.Title>
+          <Modal.Title>Update shop item</Modal.Title>
         </Modal.Header>
         <Modal.Body>{formBody}</Modal.Body>
       </Modal>
@@ -114,8 +125,9 @@ const ProductForm = ({ addProduct }) => {
   );
 };
 
-ProductForm.propTypes = {
-  addProduct: PropTypes.func.isRequired
+Update.propTypes = {
+  updateProduct: PropTypes.func.isRequired,
+  shop: PropTypes.object.isRequired
 };
 
-export default connect(null, { addProduct })(ProductForm);
+export default connect(null, { updateProduct })(Update);

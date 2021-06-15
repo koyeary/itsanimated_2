@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Dialog from '../modals/dialog';
+import Dialog from '../modals/Dialog';
 
 const Admin = () => {
   return (

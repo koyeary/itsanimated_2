@@ -9,6 +9,23 @@ import {
   GET_PRODUCT
 } from './types';
 
+// Get one product
+export const getProduct = (id) => async (dispatch) => {
+  try {
+    const res = await api.get(`/storefront/${id}`);
+
+    dispatch({
+      type: GET_PRODUCT,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
 // Get products
 export const getProducts = () => async (dispatch) => {
   try {
@@ -26,49 +43,8 @@ export const getProducts = () => async (dispatch) => {
   }
 };
 
-// Update product
-export const updateProduct = (id, formData) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
 
-  try {
-    const res = await api.put(`/storefront/${id}`, formData, config);
-
-    dispatch({
-      type: UPDATE_PRODUCT,
-      payload: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: PRODUCT_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
-  }
-};
-
-// Delete
-export const deleteProduct = ({ id }) => async (dispatch) => {
-  try {
-    await api.delete(`/storefront/${id}`);
-
-    dispatch({
-      type: DELETE_PRODUCT,
-      payload: id 
-    });
-
-    //dispatch(setAlert('Product Removed', 'success'));
-  } catch (err) {
-    dispatch({
-      type: PRODUCT_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
-  }
-};
-
-// Add
+// Add product
 export const addProduct = (formData) => async (dispatch) => {
   const config = {
     headers: {
@@ -93,13 +69,19 @@ export const addProduct = (formData) => async (dispatch) => {
   }
 };
 
-// Get
-export const getProduct = (id) => async (dispatch) => {
+// Update product
+export const updateProduct = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
   try {
-    const res = await api.get(`/storefront/${id}`);
+    const res = await api.put(`/storefront`, formData, config);
 
     dispatch({
-      type: GET_PRODUCT,
+      type: UPDATE_PRODUCT,
       payload: res.data
     });
   } catch (err) {
@@ -109,3 +91,31 @@ export const getProduct = (id) => async (dispatch) => {
     });
   }
 };
+
+// Delete product
+export const deleteProduct = (id) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    await api.delete(`/storefront/${id}`, config);
+
+    dispatch({
+      type: DELETE_PRODUCT,
+      payload: id
+    });
+
+    dispatch(`${id} removed`);
+  } catch (err) {
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
+
+
