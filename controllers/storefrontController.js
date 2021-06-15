@@ -14,10 +14,11 @@ module.exports = {
     }
   },
 
+  //MUST ADD CLIENT SIDE ACTION THAT CALLS GET ITEM 
   // @route    GET api/storefront/search
   // @desc     Get product by name
   // @access   Public
-/*   find: async (req, res) => {
+   getItem: async (req, res) => {
     const { name } = req.body;
 
     try {
@@ -28,7 +29,7 @@ module.exports = {
       console.error(err.message);
       res.status(500).send('Server error');
     }
-  }, */
+  }, 
 
   // @route    POST api/storefront/
   // @desc     Save new product

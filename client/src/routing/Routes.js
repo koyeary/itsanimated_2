@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Admin from '../components/pages/Admin';
 import Home from '../components/pages/Home';
-import Dashboard from '../components/pages/Dashboard';
+import Dashboard from '../components/shop/adminStorefront/Dashboard';
 import PrivateRoute from './PrivateRoutes';
 
 const Routes = (props) => {

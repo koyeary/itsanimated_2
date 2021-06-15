@@ -11,7 +11,8 @@ router
     .delete(auth, storefrontController.remove);
 
 // Matches with '/api/storefront/:id
-/* router
+ router
     .route('/:id')
-    .get(storefrontController.find) */
+    .get(storefrontController.getItem) 
+
 module.exports = router;

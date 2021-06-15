@@ -58,6 +58,7 @@ const Dashboard = ({ getProducts, shop: { products } }) => {
               <tbody>
                 {products.map((product) => (
                   <Fragment>
+{/*                     //TableRow product=product function=delete/update/add */}
                     {toggleTable ? (
                       <Delete key={product._id} product={product} />
                     ) : (
