@@ -8,11 +8,9 @@ import { deleteProduct } from '../../../../../../redux/shop/actions/shopActions'
 
 const Delete = ({ deleteProduct, product }) => {
   const handleClick = (e) => {
-      const { id }= product._id;
     e.preventDefault();
 
-    //console.log(product);
-    deleteProduct({id});
+    deleteProduct(product._id);
   };
 
   return (

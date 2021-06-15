@@ -54,6 +54,7 @@ const Add = ({ addProduct }) => {
           value={category}
           onChange={onChange}
           placeholder="Ex: hat"
+          required
         />
       </Form.Group>
 

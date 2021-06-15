@@ -30,7 +30,6 @@ const Update = ({ updateProduct, product }) => {
     updateProduct(formData);
     alert(`product ${_id} updated`);
     handleClose();
-    setFormData(initialState);
   };
 
 
@@ -109,8 +108,7 @@ const Update = ({ updateProduct, product }) => {
     <Fragment>
     <Button
       data-toggle="button"
-      className="my-3"
-      value="add"
+      value="update"
       onClick={handleShow}
     >
       <i class='far fa-edit' />
