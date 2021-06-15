@@ -11,12 +11,12 @@ const Add = ({ addProduct }) => {
     name: '',
     price: '',
     category: '',
-    main_image: ''
+    image_src: ''
   };
   const [formData, setFormData] = useState(initialState);
   const [show, setShow] = useState(false);
 
-  const { name, price, category, main_image } = formData;
+  const { name, price, category, image_src } = formData;
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -73,8 +73,8 @@ const Add = ({ addProduct }) => {
         <Form.Label>Image</Form.Label>
         <Form.Control
           className="form-control-lg"
-          name="main_image"
-          value={main_image}
+          name="image_src"
+          value={image_src}
           onChange={onChange}
           placeholder="Image File"
           required
