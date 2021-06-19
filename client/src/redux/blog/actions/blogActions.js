@@ -15,10 +15,11 @@ export const getPosts = () => async dispatch => {
             type: GET_POSTS,
             payload: res.data
         });
+
     } catch (err) {
         dispatch({ 
             type: BLOG_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+           // payload: { msg: err.response.statusText, status: err.response.status }
         });
     }
 };

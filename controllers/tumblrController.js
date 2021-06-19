@@ -1,4 +1,5 @@
 const config = require('config');
+const axios = require('axios');
 const tumblr = require('tumblr.js');
 
 const client = new tumblr.Client({
@@ -11,18 +12,24 @@ const client = new tumblr.Client({
   returnPromises: true
 });
 
+/* const client = new tumblr.Client({
+  credentials: {
+    consumer_key: config.get('consumer_key')
+  }
+}) */
+
 module.exports = {
   getPosts: async (req, res) => {
     try {
-      const posts = await client.blogPosts('animatedtext', { type: 'photo' });
+      const tumblr = await client.blogPosts('queerlilkitten-blog-blog', { type: 'photo' });
 
-      if (!posts) {
+      if (!tumblr) {
         return res.status(400).json({
           errors: [{ msg: `Invalid credentials` }]
         });
       }
 
-      return res.json(posts);
+      return res.json(tumblr.posts);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
