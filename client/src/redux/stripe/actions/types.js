@@ -1,0 +1,2 @@
+export const CREATE_CHECKOUT   = 'CREATE_CHECKOUT';
+export const STRIPE_ERROR  = 'STRIPE_ERROR';
