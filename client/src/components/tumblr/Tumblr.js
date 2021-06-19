@@ -12,7 +12,6 @@ const Tumblr = ({ getPosts, blog: { posts } }) => {
 
   const loadTumblr = () => {
     getPosts();
-    //console.log('click');
 
   };
 

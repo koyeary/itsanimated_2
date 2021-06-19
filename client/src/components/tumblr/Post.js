@@ -3,8 +3,6 @@ import { Card, Row } from 'react-bootstrap';
 import ReactDOM from 'react-dom';
 
 const Post = ({ post }) => {
-  //const photo = post.embed;
-  console.log({post})
 
   return (
     <Fragment>
