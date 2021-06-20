@@ -2,18 +2,9 @@ const config = require('config');
 const stripe = require('stripe')(config.get('stripe_key'));
 
 module.exports = {
-  /*   createCustomer: async (req, res) => {
-    const { email, cart } = req.body;
-
-    const customer = await stripe.customers.create({
-      email: email
-    });
-
-    return res.json(customer.id);
-  }, */
 
   createCheckoutSession: async (req, res) => {
-    const { quantity, name, images, price } = req.body;
+    const { quantity, name, images } = req.body;
 
     try {
       const session = await stripe.checkout.sessions.create({
