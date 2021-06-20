@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 //import { Spinner } from 'react-bootstrap';
 
 import { Button, Modal } from 'react-bootstrap';
-import { deleteProduct } from '../../../../../../redux/shop/actions/shopActions';
+import { deleteProduct } from '../../../../../../redux/inventory/actions/inventoryActions';
 
 const Delete = ({ deleteProduct, product }) => {
 
@@ -49,7 +49,7 @@ const Delete = ({ deleteProduct, product }) => {
 
 Delete.propTypes = {
   deleteProduct: PropTypes.func.isRequired,
-  shop: PropTypes.object.isRequired
+  inventory: PropTypes.object.isRequired
 };
 
 export default connect(null, { deleteProduct })(Delete);

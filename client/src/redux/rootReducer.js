@@ -1,17 +1,18 @@
 import { combineReducers } from 'redux';
 //import alert from './alert';
 import auth from './auth/reducers/authReducer';
-import shop from './shop/reducers/shopReducer';
+import inventory from './inventory/reducers/inventoryReducer';
 import blog from './blog/reducers/blogReducer';
+import stripe from './stripe/reducers/stripeReducer';
 
 
 export default combineReducers({
   // alert
   auth,
-  shop,
-  blog
-  /*images,
-     stripe,
+  inventory,
+  blog,
+  stripe
+  /*
      cart, 
      contact */
 });

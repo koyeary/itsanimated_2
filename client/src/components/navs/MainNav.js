@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminLinks from './links/AdminLinks';
 import GuestLinks from './links/GuestLinks';
-import CartModal from '../shop/userStorefront/CartModal';
+import CartModal from '../shop/productDetails/ProductDetail';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

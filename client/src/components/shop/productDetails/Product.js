@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { getProducts } from '../../../redux/shop/actions/shopActions';
+import { getProducts } from '../../../redux/inventory/actions/inventoryActions';
 import { connect } from 'react-redux';
-import Details from './components/Details';
+import QuickView from './QuickView';
 
-const Product = ({ getProducts, shop: { products } }) => {
+const Product = ({ getProducts, inventory: { products } }) => {
   useEffect(() => getProducts());
 
   return (
@@ -21,7 +21,7 @@ const Product = ({ getProducts, shop: { products } }) => {
                 <h4 className='Product__title'>{product.name}</h4>
                 <p className='Product__price'>${product.price}</p>
               </div>
-              <Details
+              <QuickView
                 name={product.name}
                 price={product.price}
                 image={product.image_src}
@@ -35,11 +35,11 @@ const Product = ({ getProducts, shop: { products } }) => {
 
 Product.propTypes = {
   getProducts: PropTypes.func.isRequired,
-  shop: PropTypes.object.isRequired
+  inventory: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  shop: state.shop
+  inventory: state.inventory
 });
 
 export default connect(mapStateToProps, { getProducts })(Product);

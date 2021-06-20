@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 //import { Spinner } from 'react-bootstrap';
 
 import { Button, Modal, Form } from 'react-bootstrap';
-import { updateProduct } from '../../../../../../redux/shop/actions/shopActions';
+import { updateProduct } from '../../../../../../redux/inventory/actions/inventoryActions';
 
 const Update = ({ updateProduct, product }) => {
   const initialState = {
@@ -127,7 +127,7 @@ const Update = ({ updateProduct, product }) => {
 
 Update.propTypes = {
   updateProduct: PropTypes.func.isRequired,
-  shop: PropTypes.object.isRequired
+  inventory: PropTypes.object.isRequired
 };
 
 export default connect(null, { updateProduct })(Update);

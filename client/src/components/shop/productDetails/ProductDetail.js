@@ -1,6 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
+import { getProduct } from '../../../redux/inventory/actions/inventoryActions';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 const CartModal = () => {
   const [show, setShow] = useState(false);
 
@@ -23,6 +27,15 @@ const CartModal = () => {
   );
 }
 
-export default CartModal;
+CartModal.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { getProduct })(CartModal);
 
 

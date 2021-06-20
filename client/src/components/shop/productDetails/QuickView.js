@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
-const Details = ({ name, price, image }) => {
+const QuickView = ({ name, price, image }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -10,18 +10,21 @@ const Details = ({ name, price, image }) => {
   return (
     <>
       <Button variant='primary' onClick={handleShow}>
-        Details
+        Quick View
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>{name}</Modal.Title>
         </Modal.Header>
         <p>{image}</p>
         <p>{price}</p>
+        <Modal.Footer>
+            <Button>Add to Cart</Button>
+        </Modal.Footer>
       </Modal>
     </>
   );
 };
 
-export default Details;
+export default QuickView;
