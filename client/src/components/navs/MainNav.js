@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminLinks from './links/AdminLinks';
 import GuestLinks from './links/GuestLinks';
-import CartModal from '../shop/productDetails/ProductDetail';
+import Cart from '../shop/cart/Cart.js';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -31,7 +31,7 @@ const MainNav = ({ auth: { isAuthenticated }, logout }) => {
                 Logout Admin {logOut}
               </a>
             ) : (
-              <CartModal/>
+              <Cart/>
             )}
           </Nav.Link>
         </Nav>
