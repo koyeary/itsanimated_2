@@ -2,10 +2,10 @@ import api from '../../../utils/api';
 import {
     CART_ADD_ITEM,
     CART_REMOVE_ITEM
-  } from '../constants/cartConstants'
+  } from './types';
   
   export const addToCart = (id, qty) => async (dispatch, getState) => {
-    const { data } = await api.get(`/api/products/${id}`)
+    const { data } = await api.get(`/inventory/${id}`);
   
     dispatch({
       type: CART_ADD_ITEM,
@@ -14,7 +14,7 @@ import {
         name: data.name,
         image: data.image,
         price: data.price,
-        countInStock: data.countInStock,
+        //countInStock: data.countInStock,
         qty,
       },
     })

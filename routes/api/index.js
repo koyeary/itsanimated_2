@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const adminRoutes = require('./admin');
-const storefrontRoutes = require('./storefront');
+const inventoryRoutes = require('./inventory');
 const tumblrRoutes = require('./tumblr');
 const stripeRoutes = require('./stripe');
 
 // Admin routes
 router.use('/admin', adminRoutes);
-//Storefront routes
-router.use('/storefront', storefrontRoutes);
+//Inventory routes
+router.use('/inventory', inventoryRoutes);
 //Tumblr routes
 router.use('/tumblr', tumblrRoutes);
 //Stripe routes

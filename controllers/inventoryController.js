@@ -1,7 +1,7 @@
 const Product = require('../models/Product');
 
 module.exports = {
-  // @route    GET api/storefront/
+  // @route    GET api/inventory/
   // @desc     Get all products
   // @access   Public
   findAll: async (req, res) => {
@@ -14,7 +14,7 @@ module.exports = {
     }
   },
 
-  // @route    GET api/storefront/search
+  // @route    GET api/inventory/search
   // @desc     Get product by name
   // @access   Public
    getItem: async (req, res) => {
@@ -30,7 +30,7 @@ module.exports = {
     }
   }, 
 
-  // @route    POST api/storefront/
+  // @route    POST api/inventory/
   // @desc     Save new product
   // @access   Private
   create: async (req, res) => {
@@ -61,7 +61,7 @@ module.exports = {
     }
   },
 
-  // @route    PUT api/storefront/
+  // @route    PUT api/inventory/
   // @desc     Save new product
   // @access   Private
   update: async (req, res) => {
@@ -85,7 +85,7 @@ module.exports = {
     }
   },
 
-  // @route    DELETE api/storefront
+  // @route    DELETE api/inventory
   // @desc     Save new product
   // @access   Private
   erase: async (req, res) => {

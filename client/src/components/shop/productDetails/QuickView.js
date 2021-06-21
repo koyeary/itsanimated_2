@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import Cart from '../cart/Cart';
 import { Button, Modal } from 'react-bootstrap';
 
-const QuickView = ({ name, price, image }) => {
+const QuickView = ({ name, price, image, id }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -20,7 +21,7 @@ const QuickView = ({ name, price, image }) => {
         <p>{image}</p>
         <p>{price}</p>
         <Modal.Footer>
-            <Button>Add to Cart</Button>
+            <Cart id={id}/>
         </Modal.Footer>
       </Modal>
     </>

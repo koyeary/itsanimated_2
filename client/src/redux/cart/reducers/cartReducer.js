@@ -4,13 +4,12 @@ import {
     CART_CLEAR_ITEMS,
   } from '../actions/types';
   
-  export const cartReducer = (
-    state = { cartItems: [], shippingAddress: {} },
-    action
-  ) => {
-    switch (action.type) {
+  export const cartReducer = (state = { cartItems: [] }, action) => {
+    const { type, payload } = action;
+
+    switch (type) {
       case CART_ADD_ITEM:
-        const item = action.payload
+        const item = payload
   
         const existItem = state.cartItems.find((x) => x.product === item.product)
   
@@ -30,7 +29,7 @@ import {
       case CART_REMOVE_ITEM:
         return {
           ...state,
-          cartItems: state.cartItems.filter((x) => x.product !== action.payload),
+          cartItems: state.cartItems.filter((x) => x.product !== payload),
         }
       case CART_CLEAR_ITEMS:
         return {
