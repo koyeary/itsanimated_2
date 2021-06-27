@@ -1,41 +1,34 @@
 import {
+    GET_CART,
     CART_ADD_ITEM,
     CART_REMOVE_ITEM,
     CART_CLEAR,
     CART_ERROR
   } from '../actions/types';
 
-  
-const cart = (state = {cartItems: []}, action) => {
+  const initialState = {
+    cart: null,
+    loading: true
+}
+
+const cart = (state = initialState, action) => {
     const { type, payload } = action;
 
     switch (type) {
+      case GET_CART:
       case CART_ADD_ITEM:
-        const item = payload;
-
-        const existItem = state.cartItems.find((x) => x.name === item.name);
-
-        if (existItem) {
-          return {
-            ...state,
-            cartItems: state.cartItems.map((x) => 
-            x.name === existItem.name ? item: x)
-          }
-        } else {
-          return {
-            ...state,
-            cartItems: [...state.cartItems, item]
-          }
-        }
       case CART_REMOVE_ITEM:
         return {
           ...state,
-          cartItems: state.cartItems.filter((x) => x.product !== payload),
-        }
+          loading: false,
+          cart: payload
+      }
       case CART_CLEAR:
+      case CART_ERROR:
         return {
           ...state,
-          cartItems: [],
+          loading: false,
+          cart: null
         }
       default:
         return state
