@@ -17,9 +17,9 @@ export const getCart = (sessionId) => async (dispatch) => {
   }
 }
 
-export const addToCart = (sessionId) => async (dispatch) => {
+export const addToCart = (sessionId, productId, quantity) => async (dispatch) => {
   try {
-    const res = await api.post(`/cart/${sessionId}`);
+    const res = await api.post(`/cart/${sessionId}`, {productId, quantity});
 
     dispatch({
       type: CART_ADD_ITEM,
@@ -33,13 +33,13 @@ export const addToCart = (sessionId) => async (dispatch) => {
   }
 };
 
-export const removeFromCart = (sessionId) => async (dispatch) => {
+export const removeFromCart = (sessionId, productId) => async (dispatch) => {
   try {
-    await api.delete(`/cart/${sessionId}`);
+    const res = await api.delete(`/cart/${sessionId}/${productId}`);
 
     dispatch({
       type: CART_REMOVE_ITEM,
-      payload: sessionId
+      payload: res.data
     });
 
   } catch (err) {
@@ -50,13 +50,13 @@ export const removeFromCart = (sessionId) => async (dispatch) => {
   }
 };
 
-export const clearCart = (sessionId, id) => async (dispatch) => {
+export const clearCart = (sessionId, productId) => async (dispatch) => {
   try {
-    await api.delete(`/cart/${sessionId}/${id}`);
+    const res = await api.delete(`/cart/${sessionId}/${productId}`);
 
     dispatch({
       type: CART_CLEAR,
-      payload: id
+      payload: res.data
     });
 
   } catch (err) {
