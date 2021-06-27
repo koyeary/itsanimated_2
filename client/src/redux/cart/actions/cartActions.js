@@ -1,5 +1,5 @@
 import api from '../../../utils/api';
-import { GET_CART, CART_ADD_ITEM, CART_REMOVE_ITEM, CART_CLEAR, CART_ERROR } from './types';
+import { GET_CART, CART_ADD_ITEM, CART_REMOVE_ITEM, CART_CLEAR, CART_ERROR, CART_LOADING } from './types';
 
 export const getCart = (sessionId) => async (dispatch) => {
   try {
