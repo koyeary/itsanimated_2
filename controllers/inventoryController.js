@@ -14,19 +14,16 @@ module.exports = {
     }
   },
 
-  // @route    GET api/inventory/search
+  // @route    GET api/inventory/:id
   // @desc     Get product by name
   // @access   Public
    getItem: async (req, res) => {
-    const { name } = req.body;
-
     try {
-      const product = await Product.findOne({ name });
+      const product = await Product.findById(req.params.id);
       return res.json(product);
-
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Server error');
+      res.status(404).send('Product not found');
     }
   }, 
 

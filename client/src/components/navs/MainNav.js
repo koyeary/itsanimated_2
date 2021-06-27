@@ -17,14 +17,14 @@ const MainNav = ({ auth: { isAuthenticated }, logout }) => {
   );
 
   return (
-    <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
+    <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark' className='justify-right'>
       <Container>
         <Navbar.Brand href='#home'>animatedtext</Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           {isAuthenticated ? <AdminLinks props={logout} /> : <GuestLinks />}
-        </Navbar.Collapse>
-        <Nav>
+        
+          </Navbar.Collapse>
           <Nav.Link>
             {isAuthenticated ? (
               <a onClick={logout} href='#!'>
@@ -34,7 +34,8 @@ const MainNav = ({ auth: { isAuthenticated }, logout }) => {
               <Cart/>
             )}
           </Nav.Link>
-        </Nav>
+       
+
       </Container>
     </Navbar>
   );

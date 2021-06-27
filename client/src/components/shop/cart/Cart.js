@@ -1,43 +1,27 @@
 import React, { Fragment, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-
-//import { getProduct } from '../../../redux/cart/actions/cartActions';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import './OffCanvas.css';
 
 const Cart = () => {
-  //const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-  //const handleClose = () => setShow(false);
-  //const handleShow = () => setShow(true);
-
-  const handleTest = () => console.log('cart');
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <Fragment>
-      <Button variant="primary" onClick={handleTest}>
-      <i class='fas fa-shopping-cart'></i>
+      <Button variant='primary' onClick={handleShow}>
+        <i className='fas fa-shopping-cart'></i>
       </Button>
-
-     {/*  <Modal show={show} onHide={handleClose} centered>
+      <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Cart</Modal.Title>
         </Modal.Header>
-      some stuff
-      </Modal> */}
+        <p>{localStorage.getItem('cartItems')}</p>
+      </Modal>
     </Fragment>
   );
-}
-
-/* Cart.propTypes = {
-  getProduct: PropTypes.func.isRequired,
-  cart: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  cart: state.cart
-}); */
-
 export default Cart;
-
-
