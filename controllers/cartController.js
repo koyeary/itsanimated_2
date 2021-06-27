@@ -5,11 +5,11 @@ module.exports = {
   // @route    GET api/cart/:sessionId
   // @desc     Get all cart items
   // @access   Public
-  getCart: async (req, res) => {
+  findCart: async (req, res) => {
     const { sessionId } = req.params.id;
 
     try {
-      const cart = await Cart.findOne({ sessionId });
+      const cart = await Cart.find({ sessionId });
       if (cart && cart.items.length > 0) {
         res.send(cart);
       } else {
@@ -49,7 +49,9 @@ module.exports = {
           cart.items.push({ id, name, price, quantity });
         }
         cart.bill += quantity * price;
+        
         cart = await cart.save();
+
         return res.status(201).send(cart);
       } else {
         const newCart = await Cart.create({
