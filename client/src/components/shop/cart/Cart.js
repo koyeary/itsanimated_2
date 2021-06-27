@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   getCart,
-  addToCart,
   removeFromCart,
   clearCart
 } from '../../../redux/cart/actions/cartActions';
@@ -15,7 +14,6 @@ import './OffCanvas.css';
 
 const Cart = ({
   getCart,
-  addToCart,
   removeFromCart,
   clearCart,
   cart: { items }
@@ -86,7 +84,6 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   getCart,
-  addToCart,
   removeFromCart,
   clearCart
 })(Cart);
