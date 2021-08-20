@@ -24,7 +24,7 @@ const Cart = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const id = localStorage.id;
+  const id = window.localStorage.getItem('product');
 
   useEffect (() => {
     if (id) {
@@ -34,7 +34,7 @@ const Cart = ({
 
   const loadCart = async (id) => { 
     await getCart(id);
-    setBasket(true);
+    //setBasket(true);
   };
 
   const removeItem = (id, itemId) => removeFromCart(id, itemId);
@@ -71,7 +71,6 @@ const Cart = ({
 
 Cart.propTypes = {
   getCart: PropTypes.func.isRequired,
-  addToCart: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired,
   clearCart: PropTypes.func.isRequired,
   cart: PropTypes.object.isRequired

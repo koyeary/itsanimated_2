@@ -5,7 +5,7 @@ module.exports = {
   // @route    GET api/cart/:sessionId
   // @desc     Get all cart items
   // @access   Public
-  findCart: async (req, res) => {
+  getCart: async (req, res) => {
     const { sessionId } = req.params.id;
 
     try {

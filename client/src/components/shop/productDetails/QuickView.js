@@ -22,7 +22,7 @@ const QuickView = ({ id, name, price, image }) => {
   return (
     <Fragment>
       <Button variant='primary' onClick={handleShow}>
-      <i class="fas fa-cart-plus"/>
+      <i class="far fa-eye"></i>
       </Button>
 
       <Modal show={show} onHide={handleClose} centered>
@@ -32,7 +32,7 @@ const QuickView = ({ id, name, price, image }) => {
         <p>{image}</p>
         <p>{price}</p>
         <Modal.Footer>
-          <Button onClick={addToCartHandler}>Add to Cart</Button>
+          <Button onClick={addToCartHandler}>add to cart</Button>
         </Modal.Footer>
       </Modal>
     </Fragment>

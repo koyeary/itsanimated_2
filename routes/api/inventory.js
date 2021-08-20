@@ -2,7 +2,7 @@ const router = require('express').Router();
 const inventoryController = require('../../controllers/inventoryController');
 const auth = require('../../middleware/auth');
 
-// Matches with '/api/storefront'
+// Matches with '/api/inventory'
 router
     .route('/')
     .get(inventoryController.findAll)
