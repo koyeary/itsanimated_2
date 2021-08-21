@@ -13,7 +13,7 @@ const ProductCard = ({ id, name, price, image, category }) => {
   useEffect(() => getProducts());
 
   return (
-    <Card className='text-center' key={id}>
+    <Card className='text-center product' key={id}>
       <Image image={image} />
         <Details name={name} price={price} category={category} />
       <Actions addToCart={addToCart} product={id} />

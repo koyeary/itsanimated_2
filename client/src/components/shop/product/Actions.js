@@ -9,7 +9,7 @@ const Actions = ({ product, addToCart }) => {
   return (
     <span className='text-right'>
       <Button variant='link' onClick={addToCartHandler}>
-        <i class='fas fa-plus' />
+        <i className='fas fa-plus shop' />
       </Button>
     </span>
   );
