@@ -5,8 +5,7 @@ import { addToCart } from '../../../redux/cart/actions/cartActions';
 import { connect } from 'react-redux';
 import Image from './Image';
 import Details from './Details';
-//import QuickView from './QuickView';
-//import AddItem from '../cart/AddItem';
+import Actions from './Actions';
 import { Button, Card } from 'react-bootstrap';
 
 const ProductCard = ({ getProducts, inventory: { products } }) => {
@@ -16,12 +15,11 @@ const ProductCard = ({ getProducts, inventory: { products } }) => {
     <Card className='Product-wrapper h-100'>
       {products &&
         products.map((product, i) => {
-          //const image = product.images[0]
           return (
             <div className='Product' key={product._id}>
               <Image image={product.image_src} />
               <Details name={product.name} price={product.price} />
-              <Card.Footer>This will be ACTIONS</Card.Footer>
+              <Card.Footer><Actions addToCart={addToCart} product={product}/></Card.Footer>
             </div>
           );
         })}
@@ -31,7 +29,7 @@ const ProductCard = ({ getProducts, inventory: { products } }) => {
 
 ProductCard.propTypes = {
   getProducts: PropTypes.func.isRequired,
-  //addToCart: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
   inventory: PropTypes.object.isRequired
 };
 
