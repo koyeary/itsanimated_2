@@ -9,22 +9,16 @@ import { getProducts } from '../../../redux/inventory/actions/inventoryActions';
 import { addToCart } from '../../../redux/cart/actions/cartActions';
 import { connect } from 'react-redux';
 
-const ProductCard = ({ getProducts, inventory: { products } }) => {
+const ProductCard = ({ id, name, price, image }) => {
   useEffect(() => getProducts());
 
   return (
-    <Card className='Product-wrapper h-100'>
-      {products.map((product, i) => {
-        return (
-          <div className='Product' key={product._id}>
-            <Image image={product.image_src} />
-            <Details name={product.name} price={product.price} />
+    <Card className='Product-wrapper h-100' key={id}>
+            <Image image={image} />
+            <Details name={name} price={price} />
             <Card.Footer>
-              <Actions addToCart={addToCart} product={product} />
+              <Actions addToCart={addToCart} product={id} />
             </Card.Footer>
-          </div>
-        );
-      })}
     </Card>
   );
 };

@@ -6,7 +6,7 @@ import Tumblr from '../components/tumblr/Tumblr';
 import Dashboard from '../components/shop/adminStorefront/Dashboard';
 import Inventory from '../components/shop/adminStorefront/Inventory';
 //import Product from '../components/shop/productDetails/Product';
-import ProductCard from '../components/shop/product/ProductCard';
+import Shop from '../components/shop/Shop';
 /* import Cart from '../components/shop/userStorefront/Cart'; */
 import PrivateRoute from './PrivateRoutes';
 
@@ -14,7 +14,7 @@ const Routes = (props) => {
   return (
     <Fragment>
       <Switch>
-        <Route path="/shop" component={ProductCard} />
+        <Route path="/shop" component={Shop} />
         {/* <Route path="/cart" component={Cart} /> */}
         <Route path='/admin' component={Admin} /> 
         <Route path='/blog' component={Tumblr}/>

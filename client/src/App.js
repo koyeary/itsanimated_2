@@ -4,7 +4,6 @@ import Home from './components/pages/Home';
 import Routes from './routing/Routes';
 import MainNav from './components/navs/MainNav';
 
-// Redux
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './redux/auth/actions/authActions';
