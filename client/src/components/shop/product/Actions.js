@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 
 const Actions = ({ product, addToCart }) => {
   const addToCartHandler = () => {
@@ -7,12 +7,11 @@ const Actions = ({ product, addToCart }) => {
   };
 
   return (
-    <Fragment>
-      <Button onClick={addToCartHandler}>
+    <span className='text-right'>
+      <Button variant='link' onClick={addToCartHandler}>
         <i class='fas fa-plus' />
       </Button>
-{/*       <Button /> */}
-    </Fragment>
+    </span>
   );
 };
 

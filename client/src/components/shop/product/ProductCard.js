@@ -3,22 +3,20 @@ import PropTypes from 'prop-types';
 import Image from './Image';
 import Details from './Details';
 import Actions from './Actions';
-import { Card } from 'react-bootstrap';
+import { Card, Row } from 'react-bootstrap';
 
 import { getProducts } from '../../../redux/inventory/actions/inventoryActions';
 import { addToCart } from '../../../redux/cart/actions/cartActions';
 import { connect } from 'react-redux';
 
-const ProductCard = ({ id, name, price, image }) => {
+const ProductCard = ({ id, name, price, image, category }) => {
   useEffect(() => getProducts());
 
   return (
-    <Card className='Product-wrapper h-100' key={id}>
-            <Image image={image} />
-            <Details name={name} price={price} />
-            <Card.Footer>
-              <Actions addToCart={addToCart} product={id} />
-            </Card.Footer>
+    <Card className='text-center' key={id}>
+      <Image image={image} />
+        <Details name={name} price={price} category={category} />
+      <Actions addToCart={addToCart} product={id} />
     </Card>
   );
 };

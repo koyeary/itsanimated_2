@@ -33,8 +33,8 @@ const Cart = ({
   });
 
   const loadCart = async (id) => { 
-    await getCart(id);
-    //setBasket(true);
+    //await getCart(id);
+    setBasket(true);
   };
 
   const removeItem = (id, itemId) => removeFromCart(id, itemId);
@@ -51,7 +51,7 @@ const Cart = ({
         </Modal.Header>
         {basket ? (
           <Modal.Body>
-            {items.map((item) => (
+{/*             {items.map((item) => (
               <Card>
                 <Card.Body>
                   <Card.Header>{item.name}</Card.Header>
@@ -61,7 +61,7 @@ const Cart = ({
                   <Button>Checkout</Button>
                 </Card.Body>
               </Card>
-            ))}
+            ))} */}
           </Modal.Body>
         ) : null }
       </Modal>

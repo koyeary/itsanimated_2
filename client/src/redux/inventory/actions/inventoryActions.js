@@ -36,10 +36,10 @@ export const getProducts = () => async (dispatch) => {
       payload: res.data
     });
   } catch (err) {
-    dispatch({
+/*     dispatch({
       type: PRODUCT_ERROR,
-      //payload: { msg: err.response.statusText, status: err.response.status }
-    });
+      payload: { msg: err.response.statusText, status: err.response.status }
+    }); */
   }
 };
 

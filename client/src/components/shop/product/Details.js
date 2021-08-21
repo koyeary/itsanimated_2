@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
+import { Card } from 'react-bootstrap';
+import Actions from './Actions';
 
-const Details = ({ name, price }) => {
+const Details = ({ name, price, category }) => {
     
     return (
         <Fragment>
-            <h4 className='Product__title'>{name}</h4>
-            <p className='Product__price'>${price}</p>
+            <Card.Body className='pt-3 pb-0'>{name}<br/>{category}<br/>${price}</Card.Body>
         </Fragment>
     )
 }

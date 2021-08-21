@@ -5,7 +5,6 @@ import Admin from '../components/pages/Admin';
 import Tumblr from '../components/tumblr/Tumblr';
 import Dashboard from '../components/shop/adminStorefront/Dashboard';
 import Inventory from '../components/shop/adminStorefront/Inventory';
-//import Product from '../components/shop/productDetails/Product';
 import Shop from '../components/shop/Shop';
 /* import Cart from '../components/shop/userStorefront/Cart'; */
 import PrivateRoute from './PrivateRoutes';

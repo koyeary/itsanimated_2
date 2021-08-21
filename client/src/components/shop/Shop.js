@@ -1,32 +1,33 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from './product/ProductCard';
 
 import { getProducts } from '../../redux/inventory/actions/inventoryActions';
 import { connect } from 'react-redux';
 
+import { Container, Col, Row } from 'react-bootstrap';
+
 const Shop = ({ getProducts, inventory: { products } }) => {
   useEffect(() => getProducts());
 
   return (
-    <Fragment>
-      {products.map((product, i) => {
-        return <ProductCard id={product._id} image={product.image_src} name={product.name} price={product.price} />;
-      })}
-    </Fragment>
-    /* <Card className='Product-wrapper h-100'>
-      {products.map((product, i) => {
-        return (
-          <div className='Product' key={product._id}>
-            <Image image={product.image_src} />
-            <Details name={product.name} price={product.price} />
-            <Card.Footer>
-              <Actions addToCart={addToCart} product={product} />
-            </Card.Footer>
-          </div>
-        );
-      })}
-    </Card> */
+    <Container className='px-4 mt-5'>
+      <Row>
+        {products.map((product, i) => {
+          return (
+            <Col sm={12} md={4} className='py-4'>
+              <ProductCard
+                id={product._id}
+                image={product.image_src}
+                name={product.name}
+                price={product.price}
+                category={product.category}
+              />
+            </Col>
+          );
+        })}
+      </Row>
+    </Container>
   );
 };
 
