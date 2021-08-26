@@ -1,4 +1,9 @@
+const config = require('config');
 const Product = require('../models/Product');
+
+const Stripe = require('stripe');
+const stripe = Stripe(config.get('stripe_key'));
+const { addToStripe, createPrice } = require('./stripeController');
 
 module.exports = {
   // @route    GET api/inventory/
@@ -31,7 +36,7 @@ module.exports = {
   // @desc     Save new product
   // @access   Private
   create: async (req, res) => {
-    const { name, price, category, image_src } = req.body;
+    const { name, images, description, id } = req.body;
 
     try {
       let product = await Product.findOne({ name });
@@ -43,13 +48,27 @@ module.exports = {
       }
 
       product = new Product({
-        name,
-        price,
-        category,
-        image_src
+        "id": "",
+        "object": "product",
+        "active": true,
+        "created": Date.now,
+        "description": description,
+        "images": images,
+        "livemode": false,
+        "metadata": {},
+        "name": name,
+        "package_dimensions": null,
+        "shippable": null,
+        "statement_descriptor": null,
+        "tax_code": null,
+        "unit_label": null,
+        "updated": Date.now,
+        "url": null
       });
 
       await product.save();
+      //await stripe.products.create()
+      //await addToStripe({ name, images, description }); 
 
       return res.status(200).json({ msg: 'Product successfully created' });
     } catch (err) {

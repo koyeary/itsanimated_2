@@ -2,36 +2,29 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const ProductSchema = new Schema({
+  id: Number,
+  object: String,
+  created: Date,
+  description: {
+    type: String
+  },
+  images: {
+    type: String
+  },
+  metadata: {},
   name: {
-    required: true,
     type: String
   },
-  category: {
-    required: true,
-    type: String
+  package_dimensions: String,
+  shippable: String,
+  statement_descriptor: String,
+  tax_code: String,
+  unit_label: String,
+  updated: {
+    type: Date,
+    default: Date.now
   },
-  price: {
-    required: true,
-    type: Number
-  },
-  image_src: {
-    type: String
-  },
-  created_at: Date,
-  updated_at: Date
-});
-
-/**
-* Add the dates on save ( updated_at & created_at )
-*/
-ProductSchema.pre('save', next => {
-  let currentDate = new Date();
-
-  this.updated_at = currentDate;
-
-  if(!this.created_at) this.created_at = currentDate;
-
-  next();
+  url: String
 });
 
 module.exports = Product = mongoose.model('product', ProductSchema);

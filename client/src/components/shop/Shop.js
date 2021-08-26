@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from './product/ProductCard';
 
@@ -8,7 +8,10 @@ import { connect } from 'react-redux';
 import { Container, Col, Row } from 'react-bootstrap';
 
 const Shop = ({ getProducts, inventory: { products } }) => {
+  let [ stuff, setStuff ] = useState([]);
+
   useEffect(() => getProducts());
+
 
   return (
     <Container className='px-4 mt-5'>
@@ -33,7 +36,6 @@ const Shop = ({ getProducts, inventory: { products } }) => {
 
 Shop.propTypes = {
   getProducts: PropTypes.func.isRequired,
-  addToCart: PropTypes.func.isRequired,
   inventory: PropTypes.object.isRequired
 };
 

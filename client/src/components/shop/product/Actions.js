@@ -1,15 +1,14 @@
-import React, { Fragment } from 'react';
+import React, { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 
-const Actions = ({ product, addToCart }) => {
-  const addToCartHandler = () => {
-    addToCart(product._id);
-  };
+import { addToCart } from '../../../redux/cart/actions/cartActions';
+
+const Actions = ({ id }) => {
 
   return (
     <span className='text-right'>
-      <Button variant='link' onClick={addToCartHandler}>
-        <i className='fas fa-plus shop' />
+      <Button variant='link' onClick={addToCart(id)}>
+        <i className='fas fa-plus shop-icon'/>
       </Button>
     </span>
   );
