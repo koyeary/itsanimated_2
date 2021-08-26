@@ -4,8 +4,9 @@ const stripe = Stripe(config.get('stripe_key'));
 const { create } = require('./inventoryController');
 
 module.exports = {
-  addToStripe: async (req, res) => {
-    const { name, images, description } = req.body;
+
+  addToStripe: async ( name ) => {
+   //const { name } = req.body;
 
     try {
       const product = await stripe.products.create(
@@ -15,15 +16,15 @@ module.exports = {
         } 
       );
 
-      return res.status(200).send(product.id);
+      return console.log(product.id);
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Stripe server error');
+      //res.status(500).send('Stripe server error');
     }
   },
 
-  createPrice: async (req, res) => {
-    const { product, unit_amount } = req.body;
+  createPrice: async (product, unit_amount) => {
+    //const { product, unit_amount } = req.body;
 
     try {
       const price = await stripe.prices.create({
@@ -44,19 +45,22 @@ module.exports = {
     const { id, product, unit_amount } = req.body;
 
      try {
-      const price = await stripe.prices.updatePrice({
-        id: id, 
-        product: product,
-        unit_amount: unit_amount
-      });
 
-      return res.status(200).send(price.id);
+      const price = await stripe.prices.update(
+        id, 
+        {
+          product: product, 
+          unit_amount: unit_amount
+        }
+      );
+
+      return res.status(200).send(price);
 
     } catch (err) {
-
-      res.status(500).send(`Server error: ${err.message}`);
+      res.status(500).send(`Server error: ${err.message} for ${id}`);
     }
   }
+
   /*
   createCheckoutSession: async (req, res) => {
     const { quantity, price } = req.body;

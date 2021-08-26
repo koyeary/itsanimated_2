@@ -13,8 +13,13 @@ router
 
 // Matches with '/api/stripe/products/price'
 router
-  .route('/products/price')
-  .post(stripeController.createPrice);
+  .route('/prices')
+  .post(stripeController.createPrice)
+
+// Matches with '/api/stripe/products/prices/:id'
+router
+  .route('/prices/:id')  
+  .put(stripeController.updatePrice);
 
 
 module.exports = router;
