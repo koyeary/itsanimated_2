@@ -12,19 +12,7 @@ module.exports = {
         {
           name: name,
           active: true
-        }
-        /*         {
-          "description": description,
-          "images": images,
-          "metadata": {},
-          "name": name,
-          "package_dimensions": null,
-          "shippable": null,
-          "statement_descriptor": null,
-          "tax_code": "txcd_99999999",
-          "unit_label": null,
-          "url": null
-        } */
+        } 
       );
 
       return res.status(200).send(product.id);
@@ -44,7 +32,25 @@ module.exports = {
         product: product
       });
 
-      return res.status(200).send(`Price: ${price} created`);
+      return res.status(200).send(price.id);
+
+    } catch (err) {
+
+      res.status(500).send(`Server error: ${err.message}`);
+    }
+  },
+
+  updatePrice: async (req, res) => {
+    const { id, product, unit_amount } = req.body;
+
+     try {
+      const price = await stripe.prices.updatePrice({
+        id: id, 
+        product: product,
+        unit_amount: unit_amount
+      });
+
+      return res.status(200).send(price.id);
 
     } catch (err) {
 
