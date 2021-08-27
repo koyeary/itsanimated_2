@@ -14,7 +14,7 @@ router
 // Matches with '/api/stripe/products/price'
 router
   .route('/prices')
-  .post(stripeController.createPrice)
+
 
 // Matches with '/api/stripe/products/prices/:id'
 router

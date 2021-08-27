@@ -53,7 +53,7 @@ module.exports = {
       });
 
       await product.save();
-      await addToStripe(name, unit_amount); 
+      await addToStripe(name, description, unit_amount); 
 
       return res.status(200).json({ msg: 'Product successfully created' });
     } catch (err) {
