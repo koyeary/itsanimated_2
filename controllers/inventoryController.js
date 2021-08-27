@@ -33,7 +33,7 @@ module.exports = {
   // @desc     Save new product
   // @access   Private
   create: async (req, res) => {
-    const { name, images, price, description } = req.body;
+    const { name, images, price, description, unit_amount } = req.body;
 
     try {
       let product = await Product.findOne({ name });
@@ -52,7 +52,7 @@ module.exports = {
       });
 
       await product.save();
-      //await addToStripe(name); 
+      await addToStripe(name); 
 
       return res.status(200).json({ msg: 'Product successfully created' });
     } catch (err) {

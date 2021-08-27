@@ -17,6 +17,9 @@ name: {
   images: {
     type: Array
   },
+  productID: {
+    type: String
+  },
   created_at: Date,
   updated_at: Date
 });
