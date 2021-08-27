@@ -48,11 +48,12 @@ module.exports = {
         name,
         description,
         price,
-        images
+        images,
+        unit_amount
       });
 
       await product.save();
-      await addToStripe(name); 
+      await addToStripe(name, unit_amount); 
 
       return res.status(200).json({ msg: 'Product successfully created' });
     } catch (err) {

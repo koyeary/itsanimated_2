@@ -20,6 +20,10 @@ name: {
   productID: {
     type: String
   },
+  unit_amount: {
+    required: true,
+    type: Number
+  },
   created_at: Date,
   updated_at: Date
 });

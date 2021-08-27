@@ -5,7 +5,7 @@ const Product = require('../models/Product');
 
 module.exports = {
 
-  addToStripe: async ( name ) => {
+  addToStripe: async ( name, unit_amount ) => {
    //const { name, unit_amount } = req.body;
 
     try {
@@ -18,7 +18,13 @@ module.exports = {
       
       await Product.updateOne({ name }, { productID: product.id });
 
-      return console.log(`${name} created`);
+      const price = await stripe.prices.create({
+        unit_amount: unit_amount,
+        currency: 'usd',
+        product: product.id
+      })
+
+      return console.log(`${name} created, ${price}`);
     } catch (err) {
 
       return console.error(err.message);
@@ -27,11 +33,8 @@ module.exports = {
   },
 
   createPrice: async (productID, unit_amount) => {
-    //const { product, unit_amount } = req.body;
-
 
     try {
-
        const price = await stripe.prices.create({
         unit_amount: unit_amount,
         currency: 'usd',
