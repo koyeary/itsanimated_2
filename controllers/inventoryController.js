@@ -48,8 +48,7 @@ module.exports = {
         name,
         description,
         price,
-        images,
-        unit_amount
+        images
       });
 
       await product.save();

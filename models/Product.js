@@ -20,9 +20,8 @@ name: {
   productID: {
     type: String
   },
-  unit_amount: {
-    required: true,
-    type: Number
+  priceID: {
+    type: String
   },
   created_at: Date,
   updated_at: Date

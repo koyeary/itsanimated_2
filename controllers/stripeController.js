@@ -4,6 +4,7 @@ const stripe = Stripe(config.get('stripe_key'));
 const Product = require('../models/Product');
 
 module.exports = {
+
   addToStripe: async (name, description, unit_amount) => {
     try {
       const product = await stripe.products.create({
@@ -18,50 +19,26 @@ module.exports = {
         currency: 'usd',
         product: product.id
       });
+    
+      await Product.updateOne({ name }, { priceID: price.id });
 
-      return console.log(`${name} created, ${price}`);
     } catch (err) {
       return console.error(err.message);
     }
   },
 
-  updatePrice: async (req, res) => {
-    const { id, product, unit_amount } = req.body;
-
-    try {
-      const price = await stripe.prices.update(id, {
-        product: product,
-        unit_amount: unit_amount
-      });
-
-      return res.status(200).send(price);
-    } catch (err) {
-      res.status(500).send(`Server error: ${err.message} for ${id}`);
-    }
-  }
-
-  /*
   createCheckoutSession: async (req, res) => {
-    const { quantity, price } = req.body;
+    const { lineItems } = req.body;
 
-    try {
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items: [
-          {
-            price,
-            quantity
-          }
-        ],
-        mode: 'payment',
-        success_url: `http://localhost:5000`, //purchase successful page
-        cancel_url: `http://localhost:8080` //purchase cancelled page
-      });
-
-      return res.json({ id: session.id });
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server error');
-    }
-  }*/
+    const session = await stripe.checkout.sessions.create({
+      line_items: lineItems,
+      payment_method_types: [
+        'card',
+      ],
+      mode: 'payment',
+      success_url: `localhost:3000/success.html`,
+      cancel_url: `localhost:3000/cancel.html`,
+    });
+    res.redirect(303, session.url)
+  }
 };
