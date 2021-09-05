@@ -24,7 +24,7 @@ const Shop = ({ getProducts, inventory: { products } }) => {
                 image={product.image_src}
                 name={product.name}
                 price={product.price}
-                category={product.category}
+                description={product.description}
               />
             </Col>
           );

@@ -40,5 +40,18 @@ module.exports = {
       cancel_url: `localhost:3000/cancel.html`,
     });
     res.redirect(303, session.url)
-  }
+  },
+/* 
+  eraseFromStripe: async (req, res) => {
+    try {
+      const deleted = await stripe.products.deleted(productID);
+      //update price to inactive
+
+      return res.sendconsole.log(deleted);
+
+    } catch (err) {
+      console.error(err);
+    }
+
+  } */
 };
