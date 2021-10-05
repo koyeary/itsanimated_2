@@ -13,8 +13,8 @@ An in-development project for a pioneering, viral digital-media artist, this app
 ### API Credits:
 Stripe for payments and accounting.
 Tumblr, Twitter, and Instagram APIs.
-Nodemailer
-React-bootstrap
+Nodemailer.
+React-bootstrap.
 
 ### Installation
 Not just yet! This is an in-development project so I can show off what I'm working on today.
