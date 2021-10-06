@@ -1,7 +1,9 @@
 const Product = require('../models/Product');
+const config = require('config');
+const { addToStripe, createPrice } = require('./stripeController');
 
 module.exports = {
-  // @route    GET api/storefront/
+  // @route    GET api/inventory/
   // @desc     Get all products
   // @access   Public
   findAll: async (req, res) => {
@@ -14,27 +16,24 @@ module.exports = {
     }
   },
 
-  // @route    GET api/storefront/search
+  // @route    GET api/inventory/:id
   // @desc     Get product by name
   // @access   Public
    getItem: async (req, res) => {
-    const { name } = req.body;
-
     try {
-      const product = await Product.findOne({ name });
+      const product = await Product.findById(req.params.id);
       return res.json(product);
-
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Server error');
+      res.status(404).send('Product not found');
     }
   }, 
 
-  // @route    POST api/storefront/
+  // @route    POST api/inventory/
   // @desc     Save new product
   // @access   Private
   create: async (req, res) => {
-    const { name, price, category, image_src } = req.body;
+    const { name, images, price, description, unit_amount } = req.body;
 
     try {
       let product = await Product.findOne({ name });
@@ -47,12 +46,13 @@ module.exports = {
 
       product = new Product({
         name,
+        description,
         price,
-        category,
-        image_src
+        images
       });
 
       await product.save();
+      await addToStripe(name, description, unit_amount); 
 
       return res.status(200).json({ msg: 'Product successfully created' });
     } catch (err) {
@@ -61,7 +61,7 @@ module.exports = {
     }
   },
 
-  // @route    PUT api/storefront/
+  // @route    PUT api/inventory/
   // @desc     Save new product
   // @access   Private
   update: async (req, res) => {
@@ -85,7 +85,7 @@ module.exports = {
     }
   },
 
-  // @route    DELETE api/storefront
+  // @route    DELETE api/inventory
   // @desc     Save new product
   // @access   Private
   erase: async (req, res) => {

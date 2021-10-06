@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Add from './components/Table/buttons/Add';
+import Add from './components/Table/adminButtons/Add';
 import TableBody from './components/Table/TableBody';
 
 import { Row, Col, Container } from 'react-bootstrap';

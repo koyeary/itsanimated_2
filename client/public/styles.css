@@ -1,0 +1,15 @@
+
+
+.shop-card:hover { 
+    box-shadow: 2px 10px 20px lightgray;
+    transition:  box-shadow .05s ease-in;
+   -webkit-transition:  box-shadow .6s ease-in;
+ }
+
+ .shop-icon {
+     color:gray;
+ }
+
+ .shop-icon:hover {
+     color: black;
+ }

@@ -1,6 +1,7 @@
 import React from 'react';
 import AdminLinks from './links/AdminLinks';
 import GuestLinks from './links/GuestLinks';
+import Cart from '../shop/cart/Cart.js';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -16,24 +17,25 @@ const MainNav = ({ auth: { isAuthenticated }, logout }) => {
   );
 
   return (
-    <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
+    <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark' className='justify-right'>
       <Container>
         <Navbar.Brand href='#home'>animatedtext</Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
           {isAuthenticated ? <AdminLinks props={logout} /> : <GuestLinks />}
-        </Navbar.Collapse>
-        <Nav>
+        
+          </Navbar.Collapse>
           <Nav.Link>
             {isAuthenticated ? (
               <a onClick={logout} href='#!'>
                 Logout Admin {logOut}
               </a>
             ) : (
-              <a href='cart'>Cart</a>
+              <Cart/>
             )}
           </Nav.Link>
-        </Nav>
+       
+
       </Container>
     </Navbar>
   );

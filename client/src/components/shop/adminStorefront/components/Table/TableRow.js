@@ -1,6 +1,6 @@
 import React from 'react';
-import Delete from './buttons/Delete';
-import Update from './buttons/Update';
+import Delete from './adminButtons/Delete';
+import Update from './adminButtons/Update';
 
 const TableRow = ({ product }) => {
 

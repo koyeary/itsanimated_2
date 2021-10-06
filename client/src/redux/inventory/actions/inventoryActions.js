@@ -12,7 +12,7 @@ import {
 // Get one product
 export const getProduct = (id) => async (dispatch) => {
   try {
-    const res = await api.get(`/storefront/${id}`);
+    const res = await api.get(`/inventory/${id}`);
 
     dispatch({
       type: GET_PRODUCT,
@@ -29,17 +29,17 @@ export const getProduct = (id) => async (dispatch) => {
 // Get products
 export const getProducts = () => async (dispatch) => {
   try {
-    const res = await api.get('/storefront');
+    const res = await api.get('/inventory');
 
     dispatch({
       type: GET_PRODUCTS,
       payload: res.data
     });
   } catch (err) {
-    dispatch({
+/*     dispatch({
       type: PRODUCT_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
-    });
+    }); */
   }
 };
 
@@ -53,7 +53,7 @@ export const addProduct = (formData) => async (dispatch) => {
   };
 
   try {
-    const res = await api.post('/storefront', formData, config);
+    const res = await api.post('/inventory', formData, config);
 
     dispatch({
       type: ADD_PRODUCT,
@@ -78,7 +78,7 @@ export const updateProduct = (formData) => async (dispatch) => {
   };
 
   try {
-    const res = await api.put(`/storefront`, formData, config);
+    const res = await api.put(`/inventory`, formData, config);
 
     dispatch({
       type: UPDATE_PRODUCT,
@@ -101,7 +101,7 @@ export const deleteProduct = (id) => async (dispatch) => {
   };
 
   try {
-    await api.delete(`/storefront/${id}`, config);
+    await api.delete(`/inventory/${id}`, config);
 
     dispatch({
       type: DELETE_PRODUCT,
@@ -116,6 +116,4 @@ export const deleteProduct = (id) => async (dispatch) => {
     });
   }
 };
-
-
 

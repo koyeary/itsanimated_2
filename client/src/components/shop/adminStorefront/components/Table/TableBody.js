@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import TableRow from './TableRow';
-import { getProducts } from '../../../../../redux/shop/actions/shopActions';
+import { getProducts } from '../../../../../redux/inventory/actions/inventoryActions';
 import { Col } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 
-const TableBody = ({ getProducts, shop: { products } }) => {
+const TableBody = ({ getProducts, inventory: { products } }) => {
   useEffect(() => getProducts());
 
   return (
@@ -40,11 +40,11 @@ const TableBody = ({ getProducts, shop: { products } }) => {
 
 TableBody.propTypes = {
   getProducts: PropTypes.func.isRequired,
-  shop: PropTypes.object.isRequired
+  inventory: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  shop: state.shop
+  inventory: state.inventory
 });
 
 export default connect(mapStateToProps, { getProducts })(TableBody);

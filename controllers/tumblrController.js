@@ -21,7 +21,7 @@ const client = new tumblr.Client({
 module.exports = {
   getPosts: async (req, res) => {
     try {
-      const tumblr = await client.blogPosts('queerlilkitten-blog-blog', { type: 'photo' });
+      const tumblr = await client.blogPosts('itsanimated_2', { type: 'photo' });
 
       if (!tumblr) {
         return res.status(400).json({

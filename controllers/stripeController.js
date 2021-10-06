@@ -1,38 +1,57 @@
 const config = require('config');
-const stripe = require('stripe')(config.get('stripe_key'));
+const Stripe = require('stripe');
+const stripe = Stripe(config.get('stripe_key'));
+const Product = require('../models/Product');
 
 module.exports = {
-/*   createCustomer: async (req, res) => {
-    const { email, cart } = req.body;
 
-    const customer = await stripe.customers.create({
-      email: email
-    });
+  addToStripe: async (name, description, unit_amount) => {
+    try {
+      const product = await stripe.products.create({
+        name: `${name} - ${description}`,
+        active: true
+      });
 
-    return res.json(customer.id);
-  }, */
+      await Product.updateOne({ name }, { productID: product.id });
+
+      const price = await stripe.prices.create({
+        unit_amount: unit_amount,
+        currency: 'usd',
+        product: product.id
+      });
+    
+      await Product.updateOne({ name }, { priceID: price.id });
+
+    } catch (err) {
+      return console.error(err.message);
+    }
+  },
 
   createCheckoutSession: async (req, res) => {
-    // const { quantity, name, images }
+    const { lineItems } = req.body;
+
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'Stubborn Attachments',
-              images: ['https://i.imgur.com/EHyR2nP.png'] //preview purchase
-            },
-            unit_amount: 2000
-          },
-          quantity: 1
-        }
+      line_items: lineItems,
+      payment_method_types: [
+        'card',
       ],
       mode: 'payment',
-      success_url: `http://localhost:5000`, //purchase successful page
-      cancel_url: `http://localhost:8080`   //purchase cancelled page
+      success_url: `localhost:3000/success.html`,
+      cancel_url: `localhost:3000/cancel.html`,
     });
-    return res.json({ id: session.id });
-  }
+    res.redirect(303, session.url)
+  },
+/* 
+  eraseFromStripe: async (req, res) => {
+    try {
+      const deleted = await stripe.products.deleted(productID);
+      //update price to inactive
+
+      return res.sendconsole.log(deleted);
+
+    } catch (err) {
+      console.error(err);
+    }
+
+  } */
 };

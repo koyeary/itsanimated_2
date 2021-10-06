@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 //import { Spinner } from 'react-bootstrap';
 
 import { Form, Button, Modal } from 'react-bootstrap';
-import { addProduct } from '../../../../../../redux/shop/actions/shopActions';
+import { addProduct } from '../../../../../../redux/inventory/actions/inventoryActions';
 
 const Add = ({ addProduct }) => {
   const initialState = {

@@ -13,7 +13,7 @@ import {
 // Load User
 export const loadUser = () => async dispatch => {
   try {
-    const res = await api.get('/admin');
+    const res = await api.get('/auth');
 
     dispatch({
       type: USER_LOADED,
@@ -29,7 +29,7 @@ export const loadUser = () => async dispatch => {
 // Register User
 export const register = formData => async dispatch => {
   try {
-    const res = await api.post('/admin/register', formData);
+    const res = await api.post('/auth/register', formData);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -55,7 +55,7 @@ export const login = (email, password) => async dispatch => {
   const body = { email, password };
 
   try {
-    const res = await api.post('/admin/login', body);
+    const res = await api.post('/auth/login', body);
 
     dispatch({
       type: LOGIN_SUCCESS,
